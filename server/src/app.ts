@@ -16,6 +16,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: config.get<string>("origin"),
+    credentials: true,
   })
 );
 app.use(deserializeUser);
