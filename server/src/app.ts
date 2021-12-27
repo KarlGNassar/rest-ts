@@ -1,6 +1,7 @@
 import express from "express";
 import config from "config";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 import connect from "./utils/connect";
 import logger from "./utils/logger";
@@ -19,6 +20,7 @@ app.use(
     credentials: true,
   })
 );
+app.use(cookieParser());
 app.use(deserializeUser);
 
 app.listen(port, async () => {

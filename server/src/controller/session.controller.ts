@@ -30,6 +30,23 @@ export async function createUserSessionHandler(req: Request, res: Response) {
   );
 
   // return access and refresh tokens
+  res.cookie("accessToken", accessToken, {
+    maxAge: 90000, // 15min
+    httpOnly: true,
+    domain: "localhost",
+    path: "/",
+    sameSite: "strict",
+    secure: false,
+  });
+  res.cookie("refreshToken", refreshToken, {
+    maxAge: 3.154e10, // 1 year
+    httpOnly: true,
+    domain: "localhost",
+    path: "/",
+    sameSite: "strict",
+    secure: false,
+  });
+
   return res.send({ accessToken, refreshToken });
 }
 
